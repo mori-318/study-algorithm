@@ -16,14 +16,14 @@ if __name__ == "__main__":
 
     for i in range(1, len(S) + 1):
         for j in range(1, len(T) + 1):
-            # 変更操作
+            # 変更操作（右下に向かう処理）
             if S[i - 1] == T[j - 1]:  # 変更なし
                 dp[i][j] = chmin(dp[i][j], dp[i - 1][j - 1])
             else:  # 変更あり
                 dp[i][j] = chmin(dp[i][j], dp[i - 1][j - 1] + 1)
-            # 削除操作
+            # 削除操作（下に向かう処理）
             dp[i][j] = chmin(dp[i][j], dp[i - 1][j] + 1)
-            # 挿入操作
+            # 挿入操作（右に向かう処理）
             dp[i][j] = chmin(dp[i][j], dp[i][j - 1] + 1)
 
     # 答えの出力
